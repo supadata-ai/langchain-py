@@ -1,0 +1,30 @@
+
+---
+
+## 7. `.gitignore`
+
+Basic Python + build ignores:
+
+```gitignore
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Misc
+.DS_Store
