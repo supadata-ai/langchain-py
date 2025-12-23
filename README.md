@@ -1,45 +1,66 @@
 # supadata-langchain
 
-Supadata document loader integration for [LangChain](https://python.langchain.com).
+Supadata document loader integration for LangChain (Python).
 
-This package exposes a `SupadataLoader` that turns Supadata API responses
-into `langchain_core.documents.Document` objects, so you can plug YouTube
-and web content into your RAG pipelines easily.
+This package provides a `SupadataLoader` that calls **Supadata’s video/post scraping endpoints only**:
 
-## Installation
+- `transcript` — fetch a transcript for a social media video/post URL
+- `metadata` — fetch structured metadata for a social media video/post URL
 
-```bash
-pip install supadata-langchain
-````
-
-You also need a Supadata API key:
-
-```bash
-export SUPADATA_API_KEY="sd_xxx..."
-```
+Supadata supports social media video/post URLs (YouTube, TikTok, Instagram, Facebook, and X/Twitter). This loader **does not** perform generic web scraping.
 
 ## Usage
 
 ```python
+import os
 from supadata_langchain import SupadataLoader
 
-loader = SupadataLoader(
-    urls=["https://www.youtube.com/watch?v=dQw4w9WgXcQ"],
-    # or rely on SUPADATA_API_KEY in the environment
-    api_key="sd_xxx...",
-    operation="transcript",  # or "metadata"
-    lang="en",
+os.environ["SUPADATA_API_KEY"] = "YOUR_API_KEY"
+
+loader = SupadataLoader()
+
+docs = loader.load(
+    {
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "operation": "transcript",
+        "lang": "en",
+        "text": True,
+        "mode": "auto",
+    }
 )
 
-docs = loader.load()
-print(docs[0].page_content[:500])
+print(docs[0].page_content)
 print(docs[0].metadata)
 ```
 
-### Operations
+### Metadata
 
-* `operation="transcript"` (default) – fetch text transcripts via `Supadata.transcript`.
-* `operation="metadata"` – fetch structured metadata via `Supadata.youtube.video` or `Supadata.web.scrape`.
+```python
+docs = loader.load(
+    {
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "operation": "metadata",
+    }
+)
 
-Extra options can be passed via the `params` dictionary and are forwarded directly to the underlying Supadata client.
+print(docs[0].page_content)
+```
 
+## API
+
+### `SupadataLoader(api_key: str | None = None, base_url: str = "https://api.supadata.ai")`
+
+* `api_key` defaults to the `SUPADATA_API_KEY` environment variable.
+
+### `load(params: dict) -> list[Document]`
+
+`params` supports:
+
+* `url` (string, required)
+* `operation` (`"transcript"` or `"metadata"`, default `"transcript"`)
+* `lang` (string, optional; transcript only)
+* `text` (bool, optional; transcript only)
+* `mode` (`"auto" | "native" | "generate"`, optional; transcript only)
+
+Returns a list containing a single `Document`.
+"""
