@@ -2,7 +2,7 @@
 
 Supadata document loader integration for LangChain (Python).
 
-This package provides a `SupadataLoader` that calls **Supadata’s video/post scraping endpoints only**:
+This package provides a `SupadataLoader` that calls Supadata’s video endpoints:
 
 - `transcript` — fetch a transcript for a social media video/post URL
 - `metadata` — fetch structured metadata for a social media video/post URL
@@ -63,4 +63,3 @@ print(docs[0].page_content)
 - `mode` (`"auto" | "native" | "generate"`, optional; transcript only)
 
 Returns a list containing a single `Document`.
-"""
