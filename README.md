@@ -7,7 +7,7 @@ This package provides a `SupadataLoader` that calls **Supadata’s video/post sc
 - `transcript` — fetch a transcript for a social media video/post URL
 - `metadata` — fetch structured metadata for a social media video/post URL
 
-Supadata supports social media video/post URLs (YouTube, TikTok, Instagram, Facebook, and X/Twitter). This loader **does not** perform generic web scraping.
+Supadata supports social media video/post URLs (YouTube, TikTok, Instagram, Facebook, and X/Twitter).
 
 ## Usage
 
@@ -50,17 +50,17 @@ print(docs[0].page_content)
 
 ### `SupadataLoader(api_key: str | None = None, base_url: str = "https://api.supadata.ai")`
 
-* `api_key` defaults to the `SUPADATA_API_KEY` environment variable.
+- `api_key` defaults to the `SUPADATA_API_KEY` environment variable.
 
 ### `load(params: dict) -> list[Document]`
 
 `params` supports:
 
-* `url` (string, required)
-* `operation` (`"transcript"` or `"metadata"`, default `"transcript"`)
-* `lang` (string, optional; transcript only)
-* `text` (bool, optional; transcript only)
-* `mode` (`"auto" | "native" | "generate"`, optional; transcript only)
+- `url` (string, required)
+- `operation` (`"transcript"` or `"metadata"`, default `"transcript"`)
+- `lang` (string, optional; transcript only)
+- `text` (bool, optional; transcript only)
+- `mode` (`"auto" | "native" | "generate"`, optional; transcript only)
 
 Returns a list containing a single `Document`.
 """

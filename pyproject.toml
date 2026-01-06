@@ -16,7 +16,7 @@ authors = [
 
 dependencies = [
   "langchain-core>=0.3.0",
-  "supadata>=0.1.0"  # adjust to the real version your client wants
+  "supadata>=1.5.0"
 ]
 
 classifiers = [
@@ -38,9 +38,9 @@ dev = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/MUDASSIR-75/supadata-langchain"
-"Source"   = "https://github.com/MUDASSIR-75/supadata-langchain"
-"Issues"   = "https://github.com/MUDASSIR-75/supadata-langchain/issues"
+"Homepage" = "https://supadata.ai"
+"Source"   = "https://github.com/supadata-ai/langchain-py"
+"Issues"   = "https://github.com/supadata-ai/langchain-py/issues"
 
 [tool.hatch.build.targets.sdist]
 include = [

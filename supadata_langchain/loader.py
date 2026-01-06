@@ -28,8 +28,7 @@ class SupadataLoader(BaseLoader):
 
     This loader supports Supadata's video/post scraping endpoints only:
     `transcript` and `metadata`. Supadata supports social media video/post URLs
-    (YouTube, TikTok, Instagram, Facebook, and X/Twitter). Generic web scraping
-    is not supported by this loader.
+    (YouTube, TikTok, Instagram, Facebook, and X/Twitter).
 
     Instantiate the loader once with an API key and call `load()` with per-call
     parameters.
